@@ -24,4 +24,14 @@
         tools:layout_editor_absoluteX="144dp"
         tools:layout_editor_absoluteY="484dp" />
 
+    <LinearLayout
+        android:id="@+id/fragmentLayout"
+        android:layout_width="395dp"
+        android:layout_height="200dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="16dp"></LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
