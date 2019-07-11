@@ -1,13 +1,27 @@
 package com.mobiversal.movieaappalo.ola.database;
 
-public class AppDatabase {
+import android.content.Context;
 
-private static AppDatabase instance;
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 
-public static AppDatabase getInstance(){
-    if(instance == null){
-        instance = new AppDatabase();
+import com.mobiversal.movieaappalo.ola.database.dao.MovieDao;
+import com.mobiversal.movieaappalo.ola.model.Movie;
+
+@Database(entities = {Movie.class}, version = 1)
+public abstract class AppDatabase extends RoomDatabase {
+
+    public abstract MovieDao movieDao();
+    private static AppDatabase instance;
+
+
+    public static AppDatabase getInstance(Context context){
+        if(instance == null){
+           return Room.databaseBuilder(context, AppDatabase.class,"app_databse")
+            .allowMainThreadQueries()
+            .build();
+        }
+        return instance;
     }
-    return instance;
-}
 }
