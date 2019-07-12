@@ -3,6 +3,7 @@ package com.mobiversal.movieaappalo.ola;
 //import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
@@ -26,27 +27,40 @@ public class MainActivity extends ParentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initClickListeners();
-        getSupportFragmentManager().beginTransaction().add(R.id.fragmentLayout, new SavedMoviesFragment(),"fragment");
+        splashScreenTransition();
+        //newActivityOnClick();
+        //getSupportFragmentManager().beginTransaction().add(R.id.fragmentLayout, new SavedMoviesFragment(),"fragment");
 //        getMoviesFromInternet();
         getMoviesFromDatabase();
 
 
     }
 
-    private void initClickListeners() {
+    private void splashScreenTransition() {
 
-     findViewById(R.id.btnSavedMovies).setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View view) {
-             openSavedMoviesActivity();
-         }
-     });
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(getApplicationContext(), PrefrencesActivity.class));
+                finish();
+            }
+
+        }, 5000);
+    }
+
+    private void newActivityOnClick(){
+
+        //findViewById(R.id.btnSavedMovies).setOnClickListener(new View.OnClickListener() {
+            // @Override
+            // public void onClick(View view) {
+            //   openSavedMoviesActivity();
+            // }
+        //});
     }
 
     private void openSavedMoviesActivity () {
 
-        Intent savedMoviesIntent=new Intent(this, SavedMoviesActivity.class);
+        Intent savedMoviesIntent=new Intent(this, PrefrencesActivity.class);
         startActivity(savedMoviesIntent);
 
 

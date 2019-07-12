@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import com.mobiversal.movieaappalo.ola.database.dao.MovieDao;
 import com.mobiversal.movieaappalo.ola.model.Movie;
 
-@Database(entities = {Movie.class}, version = 1)
+@Database(entities = {Movie.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract MovieDao movieDao();
