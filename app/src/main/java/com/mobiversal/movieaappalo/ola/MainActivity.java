@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 
 import com.mobiversal.movieaappalo.ola.database.AppDatabase;
 import com.mobiversal.movieaappalo.ola.model.Movie;
@@ -41,7 +40,7 @@ public class MainActivity extends ParentActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getApplicationContext(), PrefrencesActivity.class));
+                startActivity(new Intent(getApplicationContext(), PreferencesActivity.class));
                 finish();
             }
 
@@ -60,7 +59,7 @@ public class MainActivity extends ParentActivity {
 
     private void openSavedMoviesActivity () {
 
-        Intent savedMoviesIntent=new Intent(this, PrefrencesActivity.class);
+        Intent savedMoviesIntent=new Intent(this, PreferencesActivity.class);
         startActivity(savedMoviesIntent);
 
 

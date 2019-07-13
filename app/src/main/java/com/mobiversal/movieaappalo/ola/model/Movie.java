@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 public class Movie {
 
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private long id;
 

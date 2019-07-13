@@ -14,7 +14,7 @@ public class Actor {
     @ColumnInfo(name="firstName")
     private String firstName;
 
-    @ColumnInfo
+    @ColumnInfo(name = "lastName")
     private String lastName;
 
     public long getId() {

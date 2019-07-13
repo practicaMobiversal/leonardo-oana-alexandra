@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PrefrencesActivity"></activity>
+        <activity android:name=".PreferencesActivity"></activity>
         <activity android:name=".SavedMoviesActivity" />
         <activity
             android:name=".MainActivity"
