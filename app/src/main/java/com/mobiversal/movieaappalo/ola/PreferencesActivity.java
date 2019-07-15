@@ -41,6 +41,8 @@ public class PreferencesActivity extends ParentActivity {
 
                 saveKeywords(getKeywords());
 
+                //TODO: Move this outside of save function
+
                 Intent intent = new Intent(PreferencesActivity.this, SearchMoviesActivity.class);
                 startActivity(intent);
             }
