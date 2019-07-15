@@ -2,6 +2,7 @@ package com.mobiversal.movieaappalo.ola;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,9 +28,18 @@ public class SearchMoviesActivity extends ParentActivity {
         llm.setOrientation(RecyclerView.VERTICAL);
 
         rvSearchMovies.setLayoutManager(llm);
-        List<Movie> movies = AppDatabase.getInstance(this).movieDao().getAllMovies();
 
-        MoviesAdapter moviesAdapter = new MoviesAdapter(movies);
-        rvSearchMovies.setAdapter(moviesAdapter);
+        new MoviesLoadThread(this) {
+            @Override
+            void onDone(@Nullable List<Movie> movies) {
+                MoviesAdapter moviesAdapter = new MoviesAdapter(movies);
+                rvSearchMovies.setAdapter(moviesAdapter);
+
+            }
+        }.execute(null, null, null);
+
+
+
+
     }
 }
