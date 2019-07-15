@@ -29,8 +29,8 @@ public class MainActivity extends ParentActivity {
         splashScreenTransition();
         //newActivityOnClick();
         //getSupportFragmentManager().beginTransaction().add(R.id.fragmentLayout, new SavedMoviesFragment(),"fragment");
-//        getMoviesFromInternet();
-        getMoviesFromDatabase();
+        getMoviesFromInternet();
+
 
 
     }
@@ -71,6 +71,11 @@ public class MainActivity extends ParentActivity {
         request.enqueue(new Callback<MoviesResponse>() {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
+
+                AppDatabase.getInstance(MainActivity.this)
+                        .movieDao()
+                        .deleteAll();
+
                 List<Movie> movies = response.body().getResults();
                  for(Movie movie: movies)
                  {
@@ -79,6 +84,8 @@ public class MainActivity extends ParentActivity {
                              .movieDao()
                              .saveMovie(movie);
                  }
+
+                 onDatabaseUpToDate();
 
 
             }
@@ -91,7 +98,7 @@ public class MainActivity extends ParentActivity {
         });
     }
 
-    public void getMoviesFromDatabase() {
+    public void onDatabaseUpToDate() {
 
         List<Movie> movies = AppDatabase.getInstance(this).movieDao().getAllMovies();
         for(Movie movie: movies) {

@@ -1,5 +1,6 @@
 package com.mobiversal.movieaappalo.ola;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +17,8 @@ public class PreferencesActivity extends ParentActivity {
         setContentView(R.layout.activity_prefrences);
         saveOnClick();
     }
-//Kewords methods start
+
+    //Kewords methods start
     private String getKeywords() {
         EditText keywords = findViewById(R.id.keywords);
         String textKeywords = keywords.getEditableText().toString();
@@ -31,22 +33,26 @@ public class PreferencesActivity extends ParentActivity {
 
 //Keywords methods end
 
-//save button method
+    //save button method
     private void saveOnClick() {
         findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
             @Override
-                    public void onClick(View view) {
-                        saveKeywords(getKeywords());
+            public void onClick(View view) {
+
+                saveKeywords(getKeywords());
+
+                Intent intent = new Intent(PreferencesActivity.this, SearchMoviesActivity.class);
+                startActivity(intent);
             }
         });
     }
 
-//actors  methods start
+    //actors  methods start
     private void getActorsOnClick() {
         findViewById(R.id.actors).setOnClickListener(new View.OnClickListener() {
             @Override
-                    public void onClick(View view) {
-                        //......................
+            public void onClick(View view) {
+                //......................
             }
         });
     }
@@ -54,7 +60,7 @@ public class PreferencesActivity extends ParentActivity {
 // .............
 // actors methods end
 
-// genres methods start
+    // genres methods start
     private void getGenresOnClick() {
         findViewById(R.id.genres).setOnClickListener(new View.OnClickListener() {
             @Override

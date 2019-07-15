@@ -16,4 +16,7 @@ public interface MovieDao {
 
     @Insert
     public long saveMovie(Movie movie);
+
+    @Query("DELETE  FROM movie" )
+    public void deleteAll();
 }
