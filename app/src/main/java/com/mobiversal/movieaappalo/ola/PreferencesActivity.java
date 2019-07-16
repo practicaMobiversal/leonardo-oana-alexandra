@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 import com.mobiversal.movieaappalo.ola.database.AppDatabase;
 import com.mobiversal.movieaappalo.ola.model.Keyword;
+import com.mobiversal.movieaappalo.ola.ui.DrawerActivity;
 
 public class PreferencesActivity extends ParentActivity {
 
@@ -15,7 +16,8 @@ public class PreferencesActivity extends ParentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prefrences);
-        saveOnClick();
+        //saveOnClick();
+        openDrawerActivityOnClick();
     }
 
     //Kewords methods start
@@ -34,20 +36,20 @@ public class PreferencesActivity extends ParentActivity {
 //Keywords methods end
 
     //save button method
-    private void saveOnClick() {
-        findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                saveKeywords(getKeywords());
-
-                //TODO: Move this outside of save function
-
-                Intent intent = new Intent(PreferencesActivity.this, SearchMoviesActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
+//    private void saveOnClick() {
+//        findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                saveKeywords(getKeywords());
+//
+//                //TODO: Move this outside of save function
+//
+//                Intent intent = new Intent(PreferencesActivity.this, SearchMoviesActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//    }
 
     //actors  methods start
     private void getActorsOnClick() {
@@ -72,4 +74,15 @@ public class PreferencesActivity extends ParentActivity {
         });
     }
 //genres methods end
+
+    private void openDrawerActivityOnClick() {
+
+        findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PreferencesActivity.this, DrawerActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 }
