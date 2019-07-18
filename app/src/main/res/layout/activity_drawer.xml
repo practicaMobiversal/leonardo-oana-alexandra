@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.DrawerActivity"
-    android:id="@+id/dl_drawer">
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.DrawerActivity">
 
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="56dp"
+        android:background="@color/colorPrimary"
+        app:title="@string/app_name"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@color/colorPrimary"
-            app:title="Movies"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    </androidx.appcompat.widget.Toolbar>
 
-        </androidx.appcompat.widget.Toolbar>
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/dl_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
 
         <FrameLayout
             android:id="@+id/fl_container"
@@ -29,15 +31,15 @@
 
         </FrameLayout>
 
-    </LinearLayout>
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:menu="@menu/menu_drawer"
+            android:id="@+id/nv_navigation"
+            android:layout_gravity = "start">
 
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:menu="@menu/menu_drawer"
-        android:id="@+id/nv_navigation"
-        android:layout_gravity = "start">
+        </com.google.android.material.navigation.NavigationView>
 
-    </com.google.android.material.navigation.NavigationView>
+    </androidx.drawerlayout.widget.DrawerLayout>
 
-</androidx.drawerlayout.widget.DrawerLayout>
+</LinearLayout>

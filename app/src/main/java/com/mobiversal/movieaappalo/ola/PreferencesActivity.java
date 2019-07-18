@@ -9,6 +9,8 @@ import android.widget.EditText;
 import com.mobiversal.movieaappalo.ola.database.AppDatabase;
 import com.mobiversal.movieaappalo.ola.model.Keyword;
 import com.mobiversal.movieaappalo.ola.ui.DrawerActivity;
+import com.mobiversal.movieaappalo.ola.ui.actors.SelectActorsActivity;
+import com.mobiversal.movieaappalo.ola.ui.genres.SelectGenresActivity;
 
 public class PreferencesActivity extends ParentActivity {
 
@@ -18,6 +20,8 @@ public class PreferencesActivity extends ParentActivity {
         setContentView(R.layout.activity_prefrences);
         //saveOnClick();
         openDrawerActivityOnClick();
+        getActorsOnClick();
+        getGenresOnClick();
     }
 
     //Kewords methods start
@@ -56,7 +60,8 @@ public class PreferencesActivity extends ParentActivity {
         findViewById(R.id.actors).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //......................
+                Intent intent = new Intent(PreferencesActivity.this, SelectActorsActivity.class);
+                  startActivity(intent);
             }
         });
     }
@@ -69,7 +74,8 @@ public class PreferencesActivity extends ParentActivity {
         findViewById(R.id.genres).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //......................
+                Intent intent = new Intent(PreferencesActivity.this, SelectGenresActivity.class);
+                startActivity(intent);
             }
         });
     }

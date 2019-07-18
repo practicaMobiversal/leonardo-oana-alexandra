@@ -4,46 +4,55 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+
 @Entity(tableName = "actor")
 public class Actor {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private long id;
+    private int id;
 
-    @ColumnInfo(name="firstName")
-    private String firstName;
+    @ColumnInfo(name = "name")
+    private String name;
 
-    @ColumnInfo(name = "lastName")
-    private String lastName;
+    @SerializedName("profile_path")
+    @ColumnInfo(name = "image")
+    private String imageUrl;
 
-    public long getId() {
+    public Actor(int id, String name, String imageUrl) {
+        this.id = id;
+        this.name = name;
+        this.imageUrl = imageUrl;
+    }
+
+    //getter & setter start
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String image) {
+        this.imageUrl = imageUrl;
+    }
+
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String firstName) {
+        this.name = name;
     }
 
-
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-
+    //getter & setter end
 
 
 }

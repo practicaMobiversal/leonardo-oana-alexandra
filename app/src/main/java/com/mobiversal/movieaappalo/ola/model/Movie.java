@@ -10,10 +10,23 @@ public class Movie {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private long id;
+    private int id;
 
     @ColumnInfo(name = "title")
     private String title;
+
+    @ColumnInfo(name = "image")
+    private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+
 
     public String getTitle() {
         return title;
@@ -23,11 +36,11 @@ public class Movie {
         this.title=title;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

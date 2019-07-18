@@ -7,8 +7,10 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.mobiversal.movieaappalo.ola.database.AppDatabase;
+import com.mobiversal.movieaappalo.ola.model.Actor;
 import com.mobiversal.movieaappalo.ola.model.Movie;
 import com.mobiversal.movieaappalo.ola.network.RequestManager;
+import com.mobiversal.movieaappalo.ola.network.response.ActorsResponse;
 import com.mobiversal.movieaappalo.ola.network.response.MoviesResponse;
 
 import java.util.List;
@@ -32,7 +34,6 @@ public class MainActivity extends ParentActivity {
         getMoviesFromInternet();
 
 
-
     }
 
     private void splashScreenTransition() {
@@ -47,19 +48,19 @@ public class MainActivity extends ParentActivity {
         }, 5000);
     }
 
-    private void newActivityOnClick(){
+    private void newActivityOnClick() {
 
         //findViewById(R.id.btnSavedMovies).setOnClickListener(new View.OnClickListener() {
-            // @Override
-            // public void onClick(View view) {
-            //   openSavedMoviesActivity();
-            // }
+        // @Override
+        // public void onClick(View view) {
+        //   openSavedMoviesActivity();
+        // }
         //});
     }
 
-    private void openSavedMoviesActivity () {
+    private void openSavedMoviesActivity() {
 
-        Intent savedMoviesIntent=new Intent(this, PreferencesActivity.class);
+        Intent savedMoviesIntent = new Intent(this, PreferencesActivity.class);
         startActivity(savedMoviesIntent);
 
 
@@ -77,17 +78,14 @@ public class MainActivity extends ParentActivity {
                         .deleteAll();
 
                 List<Movie> movies = response.body().getResults();
-                 for(Movie movie: movies)
-                 {
-                     Log.d(TAG, movie.getTitle());
-                     AppDatabase.getInstance(MainActivity.this)
-                             .movieDao()
-                             .saveMovie(movie);
-                 }
+                for (Movie movie : movies) {
+                    Log.d(TAG, movie.getTitle());
+                    AppDatabase.getInstance(MainActivity.this)
+                            .movieDao()
+                            .saveMovie(movie);
+                }
 
-                 onDatabaseUpToDate();
-
-
+                onDatabaseUpToDate();
             }
 
             @Override
@@ -101,9 +99,10 @@ public class MainActivity extends ParentActivity {
     public void onDatabaseUpToDate() {
 
         List<Movie> movies = AppDatabase.getInstance(this).movieDao().getAllMovies();
-        for(Movie movie: movies) {
+        for (Movie movie : movies) {
             Log.d(TAG, movie.getTitle());
         }
 
-   }
+    }
 }
+

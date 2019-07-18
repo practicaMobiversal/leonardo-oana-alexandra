@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.DrawerActivity"></activity>
+        <activity android:name=".ui.genres.SelectGenresActivity"></activity>
+        <activity android:name=".ui.actors.SelectActorsActivity" />
+        <activity android:name=".ui.DrawerActivity" />
         <activity android:name=".PreferencesActivity" />
         <activity android:name=".SavedMoviesActivity" />
         <activity
