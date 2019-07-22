@@ -1,4 +1,4 @@
-package com.mobiversal.movieaappalo.ola.ui;
+package com.mobiversal.movieaappalo.ola.ui.movies;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,15 +6,16 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationView;
 import com.mobiversal.movieaappalo.ola.R;
+import com.mobiversal.movieaappalo.ola.ui.movies.movie_drawer.MovieListFragment;
+import com.mobiversal.movieaappalo.ola.ui.movies.movie_drawer.SearchOtherMoviesFragment;
 
-public class DrawerActivity extends AppCompatActivity {
+public class SearchMoviesActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -22,7 +23,7 @@ public class DrawerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drawer);
+        setContentView(R.layout.activity_search_movies);
         showFirstFragment();
         initToolbar();
         initDrawer();
@@ -59,11 +60,11 @@ public class DrawerActivity extends AppCompatActivity {
     }
 
     private void showFirstFragment() {
-        switchFragment(new FirstFragment());
+        switchFragment(new MovieListFragment());
     }
 
     private void showSecondFragment() {
-        switchFragment(new SecondFragment());
+        switchFragment(new SearchOtherMoviesFragment());
     }
 
     private void switchFragment(Fragment fragment) {

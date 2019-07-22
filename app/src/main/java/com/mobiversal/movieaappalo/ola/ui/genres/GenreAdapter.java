@@ -1,11 +1,11 @@
 package com.mobiversal.movieaappalo.ola.ui.genres;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,18 +14,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mobiversal.movieaappalo.ola.R;
 import com.mobiversal.movieaappalo.ola.model.Genre;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenreViewHolder> {
 
     List<Genre> genres;
+    public List<Integer> genresId;
 
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
     }
 
+    public List<Integer> getGenresId() {
+        return genresId;
+    }
+
     public GenreAdapter(List<Genre> genres) {
+
         this.genres = genres;
+        genresId = new ArrayList<>();
     }
 
 
@@ -66,16 +74,22 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenreViewHol
 
         public void onBind(Genre genreItem) {
             genre.setText(genreItem.getGenre());
-            setCheckboxOnThick();
+            setCheckboxOnThick(genreItem);
 
 
         }
 
-        private void setCheckboxOnThick () {
-
-            genreCheckBox.setChecked(true);
+        private void setCheckboxOnThick(Genre genreItem) {
             genreCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                // update your model (or other business logic) based on isChecked
+
+                if (isChecked) {
+                    genresId.add(genreItem.getId());
+                    Log.d("Genre ID", genreItem.getGenre());
+                } else {
+
+                    genresId.remove(new Integer(genreItem.getId()));
+                    Log.d("Genres removed", genreItem.getGenre());
+                }
             });
         }
     }

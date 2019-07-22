@@ -1,4 +1,4 @@
-package com.mobiversal.movieaappalo.ola.ui;
+package com.mobiversal.movieaappalo.ola.ui.movies.movie_drawer;
 
 
 import android.os.Bundle;
@@ -13,23 +13,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mobiversal.movieaappalo.ola.MoviesAdapter;
-import com.mobiversal.movieaappalo.ola.MoviesLoadThread;
-import com.mobiversal.movieaappalo.ola.MovieItemViewHolder;
 import com.mobiversal.movieaappalo.ola.R;
 import com.mobiversal.movieaappalo.ola.model.Movie;
+import com.mobiversal.movieaappalo.ola.ui.movies.movies_view_holder.MoviesAdapter;
+import com.mobiversal.movieaappalo.ola.ui.movies.movies_view_holder.MoviesLoadThread;
 
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FirstFragment extends Fragment {
+public class MovieListFragment extends Fragment {
 
     private RecyclerView rvSearchMovies;
 
 
-    public FirstFragment() {
+    public MovieListFragment() {
         // Required empty public constructor
     }
 
@@ -38,7 +37,7 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
+        return inflater.inflate(R.layout.fragment_movie_list, container, false);
 
     }
 

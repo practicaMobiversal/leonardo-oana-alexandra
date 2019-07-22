@@ -1,4 +1,4 @@
-package com.mobiversal.movieaappalo.ola;
+package com.mobiversal.movieaappalo.ola.ui.movies.movies_view_holder;
 
 import android.content.Context;
 import android.os.AsyncTask;

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.mobiversal.movieaappalo.ola.R;
 import com.mobiversal.movieaappalo.ola.database.AppDatabase;
@@ -27,6 +28,7 @@ public class SelectGenresActivity extends AppCompatActivity {
     List<Genre> genres;
     GenreAdapter adapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,7 @@ public class SelectGenresActivity extends AppCompatActivity {
         rvGenres = findViewById(R.id.rv_select_genres);
         setupRecyclerView();
         getGenresFromInternet();
+        getIdOnClick();
     }
 
     private void setupRecyclerView() {
@@ -74,6 +77,16 @@ public class SelectGenresActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void getIdOnClick() {
+        findViewById(R.id.save_genres_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adapter.getGenresId();
+                Log.d("Added genre ids","Added list");
+            }
+        } );
     }
 
 }

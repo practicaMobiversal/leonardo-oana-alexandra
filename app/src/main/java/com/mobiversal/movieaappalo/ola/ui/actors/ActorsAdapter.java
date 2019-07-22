@@ -1,6 +1,7 @@
 package com.mobiversal.movieaappalo.ola.ui.actors;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.mobiversal.movieaappalo.ola.R;
 import com.mobiversal.movieaappalo.ola.model.Actor;
 import com.mobiversal.movieaappalo.ola.utils.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.mobiversal.movieaappalo.ola.utils.Constants.BASE_IMAGE_URL;
@@ -23,15 +25,21 @@ import static com.mobiversal.movieaappalo.ola.utils.Constants.IMAGE_SIZE;
 public class ActorsAdapter extends RecyclerView.Adapter<ActorsAdapter.ActorViewHolder> {
 
     List<Actor> actors;
+    public List<Integer> actorsId;
 
     public void setActors(List<Actor> actors) {
         this.actors = actors;
     }
 
     public ActorsAdapter(List<Actor> actors) {
+
         this.actors = actors;
+        actorsId = new ArrayList<>();
     }
 
+    public List<Integer> getActorsId() {
+        return actorsId;
+    }
 
     @NonNull
     @Override
@@ -70,8 +78,24 @@ public class ActorsAdapter extends RecyclerView.Adapter<ActorsAdapter.ActorViewH
         }
 
         public void onBind(Actor actor) {
-            ImageLoader.loadImageUrl(actorImage, BASE_IMAGE_URL+IMAGE_SIZE+actor.getImageUrl(), actorImage.getContext());
+            ImageLoader.loadImageUrl(actorImage, BASE_IMAGE_URL + IMAGE_SIZE + actor.getImageUrl(), actorImage.getContext());
             actorName.setText(actor.getName());
+            setCheckboxOnThick(actor);
+        }
+
+        private void setCheckboxOnThick(Actor actor) {
+
+            actorCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+
+                if (isChecked) {
+                    actorsId.add(actor.getId());
+                    Log.d("Actors ID", actor.getName() + isChecked);
+                } else {
+
+                    actorsId.remove(new Integer(actor.getId()));
+                    Log.d("Actors removed", actor.getName());
+                }
+            });
         }
     }
 

@@ -1,4 +1,4 @@
-package com.mobiversal.movieaappalo.ola;
+package com.mobiversal.movieaappalo.ola.ui.movies.movies_view_holder;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mobiversal.movieaappalo.ola.R;
 import com.mobiversal.movieaappalo.ola.model.Movie;
+import com.mobiversal.movieaappalo.ola.ui.movies.movies_view_holder.MovieItemViewHolder;
 
 import java.util.List;
 

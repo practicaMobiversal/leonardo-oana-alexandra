@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.mobiversal.movieaappalo.ola.R;
 import com.mobiversal.movieaappalo.ola.database.AppDatabase;
@@ -29,6 +30,7 @@ public class SelectActorsActivity extends AppCompatActivity {
     List<Actor> actors;
     ActorsAdapter  adapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,8 @@ public class SelectActorsActivity extends AppCompatActivity {
         rvActors = findViewById(R.id.rv_select_actors);
         setupRecyclerView();
         getActorsFromInternet();
+        getIdOnClick();
+
     }
 
     private void setupRecyclerView() {
@@ -78,5 +82,15 @@ public class SelectActorsActivity extends AppCompatActivity {
             }
         });
     }
+    public void getIdOnClick() {
+        findViewById(R.id.save_genres_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adapter.getActorsId();
+                Log.d("Added actors ids","Added list");
+            }
+        } );
+    }
+
 
 }
