@@ -26,6 +26,7 @@ public class Actor {
         this.imageUrl = imageUrl;
     }
 
+
     //getter & setter start
     public String getImageUrl() {
         return imageUrl;

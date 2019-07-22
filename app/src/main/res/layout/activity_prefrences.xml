@@ -39,7 +39,7 @@
         android:background="#00000000"
         android:textColor="#ffff"
         android:clickable="false"/>
-    <Button
+    <TextView
         android:id="@+id/actors"
         android:layout_width="300dp"
         android:layout_height="75dp"
@@ -47,12 +47,13 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@id/genres"
-        android:text="Actors"
+        android:paddingLeft="15dp"
+        android:paddingTop="20dp"
         android:textSize="20dp"
         android:background="@drawable/button_theme"
         />
 
-    <Button
+    <TextView
         android:id="@+id/genres"
         android:layout_width="300dp"
         android:layout_height="75dp"
@@ -60,7 +61,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@id/keywords"
-        android:text="Genres"
+        android:paddingLeft="15dp"
+        android:paddingTop="20dp"
         android:textSize="20dp"
         android:background="@drawable/button_theme"
          />

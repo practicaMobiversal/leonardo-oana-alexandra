@@ -36,7 +36,7 @@ public class SelectGenresActivity extends AppCompatActivity {
         rvGenres = findViewById(R.id.rv_select_genres);
         setupRecyclerView();
         getGenresFromInternet();
-        getIdOnClick();
+        getSelectedGenresOnClick();
     }
 
     private void setupRecyclerView() {
@@ -79,14 +79,17 @@ public class SelectGenresActivity extends AppCompatActivity {
         });
     }
 
-    public void getIdOnClick() {
-        findViewById(R.id.save_genres_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                adapter.getGenresId();
-                Log.d("Added genre ids","Added list");
+    public void getSelectedGenresOnClick() {
+        findViewById(R.id.save_genres_btn).setOnClickListener(view -> {
+            AppDatabase.getInstance(SelectGenresActivity.this).genreDao().deleteAll();
+            for (Genre genre: adapter.getSelectedGenres() ) {
+                AppDatabase.getInstance(SelectGenresActivity.this).genreDao().saveGenre(genre);
+                Log.d(TAG, genre.getGenre());
             }
-        } );
-    }
+            onBackPressed();
+    });
 
+
+
+    }
 }

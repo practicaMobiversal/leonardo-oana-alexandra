@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import com.mobiversal.movieaappalo.ola.database.AppDatabase;
 import com.mobiversal.movieaappalo.ola.model.Movie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class MoviesLoadThread extends AsyncTask<Void, Void, List<Movie>> {
@@ -25,6 +26,8 @@ public abstract class MoviesLoadThread extends AsyncTask<Void, Void, List<Movie>
     @Override
     protected void onPostExecute(List<Movie> movies) {
         super.onPostExecute(movies);
+        if(movies == null)
+            movies = new ArrayList<>();
         onDone(movies);
     }
 

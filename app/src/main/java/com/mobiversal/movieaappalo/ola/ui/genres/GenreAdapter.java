@@ -20,20 +20,20 @@ import java.util.List;
 public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenreViewHolder> {
 
     List<Genre> genres;
-    public List<Integer> genresId;
+    public List<Genre> selectedGenres;
 
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
     }
 
-    public List<Integer> getGenresId() {
-        return genresId;
+    public List<Genre> getSelectedGenres() {
+        return selectedGenres;
     }
 
     public GenreAdapter(List<Genre> genres) {
 
         this.genres = genres;
-        genresId = new ArrayList<>();
+        selectedGenres = new ArrayList<>();
     }
 
 
@@ -83,11 +83,11 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenreViewHol
             genreCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
 
                 if (isChecked) {
-                    genresId.add(genreItem.getId());
+                    selectedGenres.add(genreItem);
                     Log.d("Genre ID", genreItem.getGenre());
                 } else {
 
-                    genresId.remove(new Integer(genreItem.getId()));
+                    selectedGenres.remove(genreItem);
                     Log.d("Genres removed", genreItem.getGenre());
                 }
             });

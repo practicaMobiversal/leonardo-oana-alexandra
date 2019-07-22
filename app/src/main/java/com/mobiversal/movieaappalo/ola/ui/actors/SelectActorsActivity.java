@@ -13,6 +13,7 @@ import com.mobiversal.movieaappalo.ola.database.AppDatabase;
 import com.mobiversal.movieaappalo.ola.model.Actor;
 import com.mobiversal.movieaappalo.ola.network.RequestManager;
 import com.mobiversal.movieaappalo.ola.network.response.ActorsResponse;
+import com.mobiversal.movieaappalo.ola.ui.genres.SelectGenresActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class SelectActorsActivity extends AppCompatActivity {
         rvActors = findViewById(R.id.rv_select_actors);
         setupRecyclerView();
         getActorsFromInternet();
-        getIdOnClick();
+        getActorsOnClick();
 
     }
 
@@ -47,7 +48,7 @@ public class SelectActorsActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         rvActors.setLayoutManager(layoutManager);
-        actors = AppDatabase.getInstance(this).actorDao().getAllActors();
+
 
         adapter = new ActorsAdapter(new ArrayList<>());
         rvActors.setAdapter(adapter);
@@ -82,14 +83,18 @@ public class SelectActorsActivity extends AppCompatActivity {
             }
         });
     }
-    public void getIdOnClick() {
-        findViewById(R.id.save_genres_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                adapter.getActorsId();
-                Log.d("Added actors ids","Added list");
+    public void getActorsOnClick() {
+        findViewById(R.id.save_actors_btn).setOnClickListener(view -> {
+
+            AppDatabase.getInstance(SelectActorsActivity.this).actorDao().deleteAll();
+            for (Actor actor: adapter.getSelectedActors() ) {
+                AppDatabase.getInstance(SelectActorsActivity.this).actorDao().saveActor(actor);
+                Log.d(TAG, actor.getName());
             }
-        } );
+            onBackPressed();
+        });
+
+
     }
 
 

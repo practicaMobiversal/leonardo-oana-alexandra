@@ -2,22 +2,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="64dp"
+    android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/iv_movie"
-        android:layout_width="48dp"
-        android:layout_height="48dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="0dp"
-        android:layout_weight="0.8"
-        android:layout_height="wrap_content"
-        tools:text="The Godfather"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+        <ImageView
+            android:id="@+id/iv_movie"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toTopOf="@id/favourites"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/watched"
+            app:layout_constraintLeft_toRightOf="@id/iv_movie"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="The Godfather" />
+
+        <Button
+            android:id="@+id/favourites"
+            android:layout_width="100dp"
+            android:layout_height="56dp"
+            android:text="Favourite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <Button
+            android:id="@+id/watched"
+            android:layout_width="100dp"
+            android:layout_height="56dp"
+            android:text="Watched"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

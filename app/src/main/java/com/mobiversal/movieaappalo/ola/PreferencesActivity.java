@@ -5,13 +5,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.mobiversal.movieaappalo.ola.database.AppDatabase;
+import com.mobiversal.movieaappalo.ola.model.Actor;
+import com.mobiversal.movieaappalo.ola.model.Genre;
 import com.mobiversal.movieaappalo.ola.model.Keyword;
 import com.mobiversal.movieaappalo.ola.ui.movies.SavedMoviesActivity;
 import com.mobiversal.movieaappalo.ola.ui.movies.SearchMoviesActivity;
 import com.mobiversal.movieaappalo.ola.ui.actors.SelectActorsActivity;
 import com.mobiversal.movieaappalo.ola.ui.genres.SelectGenresActivity;
+
+import java.util.List;
 
 public class PreferencesActivity extends ParentActivity {
 
@@ -20,10 +25,43 @@ public class PreferencesActivity extends ParentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prefrences);
         //saveOnClick();
-        openDrawerActivityOnClick();
+        openSearchMoviesActivityOnClick();
         getActorsOnClick();
         getGenresOnClick();
         placeholder();
+        AppDatabase.getInstance(PreferencesActivity.this).actorDao().deleteAll();
+        AppDatabase.getInstance(PreferencesActivity.this).genreDao().deleteAll();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showSelectedActors();
+        showSelectedGenres();
+
+    }
+
+    public void showSelectedActors() {
+
+        List<Actor> selectedActors = AppDatabase.getInstance(PreferencesActivity.this).actorDao().getAllActors();
+        String actorNames = "Actors:";
+        TextView actorTv = findViewById(R.id.actors);
+            for (Actor actor: selectedActors)
+                actorNames += actor.getName()+" "+"," ;
+            actorTv.setText(actorNames);
+
+    }
+
+    public void showSelectedGenres() {
+
+        List<Genre> selectedGenres = AppDatabase.getInstance(PreferencesActivity.this).genreDao().getAllGenres();
+        String genreNames = "Genres:";
+        TextView genreTv = findViewById(R.id.genres);
+            for (Genre genre: selectedGenres)
+                genreNames += genre.getGenre()+"," ;
+            genreTv.setText(genreNames);
+
     }
 
     //Kewords methods start
@@ -39,23 +77,6 @@ public class PreferencesActivity extends ParentActivity {
         Log.d(PreferencesActivity.class.getSimpleName(), name);
     }
 
-//Keywords methods end
-
-    //save button method
-//    private void saveOnClick() {
-//        findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                saveKeywords(getKeywords());
-//
-//                //TODO: Move this outside of save function
-//
-//                Intent intent = new Intent(PreferencesActivity.this, SearchMoviesActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//    }
 
     //actors  methods start
     private void getActorsOnClick() {
@@ -83,25 +104,20 @@ public class PreferencesActivity extends ParentActivity {
     }
 //genres methods end
 
-    private void openDrawerActivityOnClick() {
+    private void openSearchMoviesActivityOnClick() {
 
-        findViewById(R.id.save_pref_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PreferencesActivity.this, SearchMoviesActivity.class);
-                startActivity(intent);
-            }
+        saveKeywords(getKeywords());
+        findViewById(R.id.save_pref_btn).setOnClickListener(view -> {
+            Intent intent = new Intent(PreferencesActivity.this, SearchMoviesActivity.class);
+            startActivity(intent);
         });
     }
 
     private void placeholder() {
 
-        findViewById(R.id.placeholder).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PreferencesActivity.this, SavedMoviesActivity.class);
-                startActivity(intent);
-            }
+        findViewById(R.id.placeholder).setOnClickListener(view -> {
+            Intent intent = new Intent(PreferencesActivity.this, SavedMoviesActivity.class);
+            startActivity(intent);
         });
     }
 }
