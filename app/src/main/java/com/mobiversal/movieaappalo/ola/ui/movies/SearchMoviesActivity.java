@@ -13,12 +13,13 @@ import android.os.Bundle;
 import com.google.android.material.navigation.NavigationView;
 import com.mobiversal.movieaappalo.ola.R;
 import com.mobiversal.movieaappalo.ola.ui.movies.movie_drawer.MovieListFragment;
-import com.mobiversal.movieaappalo.ola.ui.movies.movie_drawer.SearchOtherMoviesFragment;
+import com.mobiversal.movieaappalo.ola.ui.movies.movie_drawer.SavedMoviesFragment;
 
 public class SearchMoviesActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class SearchMoviesActivity extends AppCompatActivity {
 
     private void initToolbar() {
         drawerLayout = findViewById(R.id.dl_drawer);
-        Toolbar toolbar = findViewById(R.id.tb_toolbar);
+        toolbar = findViewById(R.id.tb_toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -64,7 +65,8 @@ public class SearchMoviesActivity extends AppCompatActivity {
     }
 
     private void showSecondFragment() {
-        switchFragment(new SearchOtherMoviesFragment());
+        switchFragment(new SavedMoviesFragment());
+        toolbar.setTitle("Saved Movies");
     }
 
     private void switchFragment(Fragment fragment) {
@@ -81,6 +83,7 @@ public class SearchMoviesActivity extends AppCompatActivity {
         switch (id) {
             case R.id.first:
                 showFirstFragment();
+                toolbar.setTitle("Search Movies");
                 break;
             case R.id.second:
                 showSecondFragment();

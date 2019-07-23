@@ -11,10 +11,10 @@ import com.mobiversal.movieaappalo.ola.database.AppDatabase;
 import com.mobiversal.movieaappalo.ola.model.Actor;
 import com.mobiversal.movieaappalo.ola.model.Genre;
 import com.mobiversal.movieaappalo.ola.model.Keyword;
-import com.mobiversal.movieaappalo.ola.ui.movies.SavedMoviesActivity;
 import com.mobiversal.movieaappalo.ola.ui.movies.SearchMoviesActivity;
 import com.mobiversal.movieaappalo.ola.ui.actors.SelectActorsActivity;
 import com.mobiversal.movieaappalo.ola.ui.genres.SelectGenresActivity;
+import com.mobiversal.movieaappalo.ola.ui.movies.movie_drawer.SavedMoviesFragment;
 
 import java.util.List;
 
@@ -28,7 +28,6 @@ public class PreferencesActivity extends ParentActivity {
         openSearchMoviesActivityOnClick();
         getActorsOnClick();
         getGenresOnClick();
-        placeholder();
         AppDatabase.getInstance(PreferencesActivity.this).actorDao().deleteAll();
         AppDatabase.getInstance(PreferencesActivity.this).genreDao().deleteAll();
 
@@ -107,17 +106,13 @@ public class PreferencesActivity extends ParentActivity {
     private void openSearchMoviesActivityOnClick() {
 
         saveKeywords(getKeywords());
+        //if (AppDatabase.getInstance())
         findViewById(R.id.save_pref_btn).setOnClickListener(view -> {
             Intent intent = new Intent(PreferencesActivity.this, SearchMoviesActivity.class);
             startActivity(intent);
         });
+
+
     }
 
-    private void placeholder() {
-
-        findViewById(R.id.placeholder).setOnClickListener(view -> {
-            Intent intent = new Intent(PreferencesActivity.this, SavedMoviesActivity.class);
-            startActivity(intent);
-        });
-    }
 }

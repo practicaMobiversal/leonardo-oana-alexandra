@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+
 @Entity(tableName = "movie")
 public class Movie {
 
@@ -16,6 +18,7 @@ public class Movie {
     private String title;
 
     @ColumnInfo(name = "image")
+    @SerializedName("poster_path")
     private String imageUrl;
 
     public String getImageUrl() {

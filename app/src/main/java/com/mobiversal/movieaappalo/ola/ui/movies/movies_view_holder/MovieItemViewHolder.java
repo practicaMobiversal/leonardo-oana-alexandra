@@ -9,6 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobiversal.movieaappalo.ola.R;
 import com.mobiversal.movieaappalo.ola.model.Movie;
+import com.mobiversal.movieaappalo.ola.utils.ImageLoader;
+
+import static com.mobiversal.movieaappalo.ola.utils.Constants.BASE_IMAGE_URL;
+import static com.mobiversal.movieaappalo.ola.utils.Constants.IMAGE_SIZE;
 
 public class MovieItemViewHolder extends RecyclerView.ViewHolder {
 
@@ -22,7 +26,7 @@ public class MovieItemViewHolder extends RecyclerView.ViewHolder {
     }
 
     public  void onBind(Movie movie) {
-        //this.ivMovie.setText(String.format("#%d",movie.getId()));
+        ImageLoader.loadImageUrl(ivMovie, BASE_IMAGE_URL + IMAGE_SIZE + movie.getImageUrl(), ivMovie.getContext());
         this.tvTitle.setText(movie.getTitle());
 
     }

@@ -48,4 +48,6 @@ public class RequestManager {
     public  Call<GenresResponse> getMovieListGenres() {return apiClient.getMovieListGenres(API_KEY);}
 
     public Call<MoviesResponse> getSearchedMovies(String userQuery)  {return apiClient.getSearchedMovies(API_KEY, userQuery );}
+
+    public Call<MoviesResponse> getDiscoveredMovies(String cast, String genre){return apiClient.getDiscoveredMovies(API_KEY,cast, genre);}
 }

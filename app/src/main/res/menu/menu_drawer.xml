@@ -2,6 +2,6 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="First" android:id="@+id/first"/>
-    <item android:title="Second" android:id="@+id/second"/>
+    <item android:title="Movie List" android:id="@+id/first"/>
+    <item android:title="Saved Movies" android:id="@+id/second"/>
 </menu>

@@ -84,7 +84,9 @@ public class ActorsAdapter extends RecyclerView.Adapter<ActorsAdapter.ActorViewH
         public void onBind(Actor actor) {
             ImageLoader.loadImageUrl(actorImage, BASE_IMAGE_URL + IMAGE_SIZE + actor.getImageUrl(), actorImage.getContext());
             actorName.setText(actor.getName());
+            actorCheckBox.setOnCheckedChangeListener(null);
             setCheckboxOnThick(actor);
+            actorCheckBox.setChecked(actor.isSelected());
         }
 
 
@@ -93,6 +95,8 @@ public class ActorsAdapter extends RecyclerView.Adapter<ActorsAdapter.ActorViewH
 
             actorCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
 
+
+                actor.setSelected(isChecked);
                 if (isChecked) {
                     selectedActors.add(actor);
                     Log.d("Actors ID", actor.getName());

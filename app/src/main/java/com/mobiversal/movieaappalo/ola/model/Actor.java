@@ -2,6 +2,7 @@ package com.mobiversal.movieaappalo.ola.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
@@ -19,6 +20,9 @@ public class Actor {
     @SerializedName("profile_path")
     @ColumnInfo(name = "image")
     private String imageUrl;
+
+    @Ignore
+    private boolean selected;
 
     public Actor(int id, String name, String imageUrl) {
         this.id = id;
@@ -51,6 +55,14 @@ public class Actor {
 
     public void setName(String firstName) {
         this.name = name;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 
     //getter & setter end

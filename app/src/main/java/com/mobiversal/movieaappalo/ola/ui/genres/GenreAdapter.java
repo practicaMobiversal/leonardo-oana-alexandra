@@ -74,7 +74,9 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenreViewHol
 
         public void onBind(Genre genreItem) {
             genre.setText(genreItem.getGenre());
+            genreCheckBox.setOnCheckedChangeListener(null);
             setCheckboxOnThick(genreItem);
+            genreCheckBox.setChecked(genreItem.isSelected());
 
 
         }
@@ -82,6 +84,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenreViewHol
         private void setCheckboxOnThick(Genre genreItem) {
             genreCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
 
+                genre.setSelected(isChecked);
                 if (isChecked) {
                     selectedGenres.add(genreItem);
                     Log.d("Genre ID", genreItem.getGenre());

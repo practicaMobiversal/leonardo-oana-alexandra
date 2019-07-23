@@ -11,9 +11,10 @@
         android:id="@+id/tb_toolbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/colorPrimary"
-        app:title="@string/app_name"
+        app:title="Search Movies"
+        android:background="@drawable/gradient"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
 
     </androidx.appcompat.widget.Toolbar>
 

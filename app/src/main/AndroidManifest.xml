@@ -12,10 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".ui.movies.SavedMoviesActivity"
-            android:label="@string/title_activity_saved_movies"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".ui.genres.SelectGenresActivity" />
         <activity android:name=".ui.actors.SelectActorsActivity" />
         <activity android:name=".ui.movies.SearchMoviesActivity" />

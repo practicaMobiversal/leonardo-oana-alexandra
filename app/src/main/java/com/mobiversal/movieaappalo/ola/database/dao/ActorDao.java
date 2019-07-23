@@ -3,6 +3,7 @@ package com.mobiversal.movieaappalo.ola.database.dao;
 
         import androidx.room.Dao;
         import androidx.room.Insert;
+        import androidx.room.OnConflictStrategy;
         import androidx.room.Query;
 
         import com.mobiversal.movieaappalo.ola.model.Actor;
@@ -15,7 +16,7 @@ public interface ActorDao {
     @Query("SELECT * FROM actor")
     public List<Actor> getAllActors();
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void saveActor(Actor actor);
 
     @Query("DELETE  FROM actor" )
