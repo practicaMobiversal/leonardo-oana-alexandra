@@ -50,4 +50,6 @@ public class RequestManager {
     public Call<MoviesResponse> getSearchedMovies(String userQuery)  {return apiClient.getSearchedMovies(API_KEY, userQuery );}
 
     public Call<MoviesResponse> getDiscoveredMovies(String cast, String genre){return apiClient.getDiscoveredMovies(API_KEY,cast, genre);}
+
+    public Call<MoviesResponse> getMovieDetails(int movieId) {return apiClient.getMovieDetails(API_KEY,movieId);}
 }

@@ -24,7 +24,7 @@ import static com.mobiversal.movieaappalo.ola.utils.Constants.IMAGE_SIZE;
 
 public class ActorsAdapter extends RecyclerView.Adapter<ActorsAdapter.ActorViewHolder> {
 
-     public List<Actor> actors;
+    public List<Actor> actors;
     public List<Actor> selectedActors;
 
     public void setActors(List<Actor> actors) {
@@ -40,9 +40,8 @@ public class ActorsAdapter extends RecyclerView.Adapter<ActorsAdapter.ActorViewH
 
         this.actors = actors;
         selectedActors = new ArrayList<>();
+
     }
-
-
 
 
     @NonNull
@@ -90,7 +89,6 @@ public class ActorsAdapter extends RecyclerView.Adapter<ActorsAdapter.ActorViewH
         }
 
 
-
         private void setCheckboxOnThick(Actor actor) {
 
             actorCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -103,8 +101,11 @@ public class ActorsAdapter extends RecyclerView.Adapter<ActorsAdapter.ActorViewH
                 } else {
 
                     selectedActors.remove(actor);
+                    Log.d("Actors Adapter", "actor is selected" + isChecked);
                     Log.d("Actors removed", actor.getName());
                 }
+
+                actor.setSelected(isChecked);
             });
         }
 

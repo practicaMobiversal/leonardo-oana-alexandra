@@ -2,6 +2,7 @@ package com.mobiversal.movieaappalo.ola.ui.movies.movie_drawer;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,7 +16,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.mobiversal.movieaappalo.ola.PreferencesActivity;
 import com.mobiversal.movieaappalo.ola.R;
 import com.mobiversal.movieaappalo.ola.database.AppDatabase;
 import com.mobiversal.movieaappalo.ola.model.Actor;
@@ -23,8 +26,10 @@ import com.mobiversal.movieaappalo.ola.model.Genre;
 import com.mobiversal.movieaappalo.ola.model.Movie;
 import com.mobiversal.movieaappalo.ola.network.RequestManager;
 import com.mobiversal.movieaappalo.ola.network.response.MoviesResponse;
+import com.mobiversal.movieaappalo.ola.ui.movies.MovieDetailActivity;
 import com.mobiversal.movieaappalo.ola.ui.movies.movies_view_holder.MoviesAdapter;
 import com.mobiversal.movieaappalo.ola.ui.movies.movies_view_holder.MoviesLoadThread;
+import com.mobiversal.movieaappalo.ola.utils.ItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +50,8 @@ public class MovieListFragment extends Fragment {
     MoviesAdapter moviesAdapter;
     List<Actor> chosenActors;
     List<Genre> chosenGenres;
+    Button filter;
+
 
 
     public MovieListFragment() {
@@ -64,6 +71,8 @@ public class MovieListFragment extends Fragment {
     public void onStart() {
         super.onStart();
         queryTextListener();
+        getPreferencesOnClick();
+        AppDatabase.getInstance(getContext()).movieDao().deleteAll();
 
     }
 
@@ -73,11 +82,19 @@ public class MovieListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.rvSearchMovies = view.findViewById(R.id.rv_search_movies);
         this.svMovies = view.findViewById(R.id.sv_movies);
+        this.filter = view.findViewById(R.id.filter_btn);
+
         movies = new ArrayList<>();
         chosenActors = new ArrayList<>();
         chosenGenres = new ArrayList<>();
         setupRecyclerView();
         getMoviesOnDiscover();
+    }
+
+    public void getDetailActivity(Movie movie){
+        Intent intent = new Intent(getContext(), MovieDetailActivity.class);
+        intent.putExtra("MOVIE_ID", movie.getId());
+        startActivity(intent);
     }
 
     private void setupRecyclerView() {
@@ -87,7 +104,12 @@ public class MovieListFragment extends Fragment {
         rvSearchMovies.setLayoutManager(llm);
 
 
-        moviesAdapter = new MoviesAdapter(movies);
+        moviesAdapter = new MoviesAdapter(movies, new ItemClickListener<Movie>() {
+            @Override
+            public void onItemClick(Movie item) {
+            getDetailActivity(item);
+            }
+        });
         rvSearchMovies.setAdapter(moviesAdapter);
 
     }
@@ -207,6 +229,16 @@ public class MovieListFragment extends Fragment {
             }
         });
     }
+
+    public void getPreferencesOnClick(){
+        filter.setOnClickListener(view -> {
+            Intent intent = new Intent(getContext(), PreferencesActivity.class);
+            startActivity(intent);
+        });
+    }
+
+
+
 
 
 

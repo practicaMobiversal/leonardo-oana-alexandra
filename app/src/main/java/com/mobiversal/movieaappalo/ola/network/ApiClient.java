@@ -24,4 +24,7 @@ public interface ApiClient {
 
     @GET("discover/movie")
     Call<MoviesResponse> getDiscoveredMovies(@Query("api_key") String apiKey, @Query("with_cast") String cast, @Query("with_genres") String genre);
+
+    @GET("movie/{movie_id}&append_to_response=videos")
+    Call<MoviesResponse> getMovieDetails(@Query("api_key") String apiKey, @Query("movie_id") int movieId);
 }

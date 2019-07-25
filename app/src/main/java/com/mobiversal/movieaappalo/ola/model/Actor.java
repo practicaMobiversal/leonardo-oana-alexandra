@@ -3,6 +3,7 @@ package com.mobiversal.movieaappalo.ola.model;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.Insert;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
@@ -20,6 +21,7 @@ public class Actor {
     @SerializedName("profile_path")
     @ColumnInfo(name = "image")
     private String imageUrl;
+
 
     @Ignore
     private boolean selected;

@@ -15,7 +15,7 @@ import com.mobiversal.movieaappalo.ola.model.Genre;
 import com.mobiversal.movieaappalo.ola.model.Keyword;
 import com.mobiversal.movieaappalo.ola.model.Movie;
 
-@Database(entities = {Movie.class, Keyword.class, Actor.class, Genre.class}, version = 1, exportSchema = false)
+@Database(entities = {Movie.class, Keyword.class, Actor.class, Genre.class}, version = 4, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract MovieDao movieDao();

@@ -86,7 +86,7 @@ public class SelectActorsActivity extends AppCompatActivity {
     public void getActorsOnClick() {
         findViewById(R.id.save_actors_btn).setOnClickListener(view -> {
 
-            AppDatabase.getInstance(SelectActorsActivity.this).actorDao().deleteAll();
+            //AppDatabase.getInstance(SelectActorsActivity.this).actorDao().deleteAll();
             for (Actor actor: adapter.getSelectedActors() ) {
                 AppDatabase.getInstance(SelectActorsActivity.this).actorDao().saveActor(actor);
                 Log.d(TAG, actor.getName());

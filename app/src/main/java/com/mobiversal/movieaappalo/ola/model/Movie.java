@@ -21,6 +21,13 @@ public class Movie {
     @SerializedName("poster_path")
     private String imageUrl;
 
+    @ColumnInfo(name = "isFavourite")
+    private boolean favourite;
+
+    @ColumnInfo(name = "isWatched")
+    private boolean watched;
+
+
     public String getImageUrl() {
         return imageUrl;
     }
@@ -28,8 +35,6 @@ public class Movie {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
-
 
     public String getTitle() {
         return title;
@@ -45,5 +50,21 @@ public class Movie {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        this.favourite = favourite;
+    }
+
+    public boolean isWatched() {
+        return watched;
+    }
+
+    public void setWatched(boolean watched) {
+        this.watched = watched;
     }
 }
