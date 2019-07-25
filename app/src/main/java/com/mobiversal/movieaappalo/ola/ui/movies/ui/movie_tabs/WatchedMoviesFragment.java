@@ -28,7 +28,7 @@ public class WatchedMoviesFragment extends Fragment {
     private RecyclerView rvWatchedMovies;
     private static final String TAG = FavouriteMoviesFragment.class.getSimpleName();
     List<Movie> movies;
-    TabMoviesAdapter moviesAdapter;
+    TabMoviesAdapter savedMoviesAdapter;
     List<Movie> watchedMovies;
     Button remove;
 
@@ -60,8 +60,8 @@ public class WatchedMoviesFragment extends Fragment {
         this.rvWatchedMovies = view.findViewById(R.id.rv_watched_movies);
         this.remove = view.findViewById(R.id.remove_btn);
         watchedMovies = new ArrayList<>();
-        getWatchedMoviesFromDatabase();
         setupRecyclerView();
+        getWatchedMoviesFromDatabase();
     }
 
     private void setupRecyclerView() {
@@ -69,28 +69,46 @@ public class WatchedMoviesFragment extends Fragment {
         llm.setOrientation(RecyclerView.VERTICAL);
 
         rvWatchedMovies.setLayoutManager(llm);
-        moviesAdapter = new TabMoviesAdapter(watchedMovies, false, new RemoveItemListener() {
+        savedMoviesAdapter = new TabMoviesAdapter(new ArrayList<>(), new RemoveItemListener() {
             @Override
             public void removeItem(Movie item) {
 
+                removeWatched(item);
+
             }
         });
-        rvWatchedMovies.setAdapter(moviesAdapter);
+        rvWatchedMovies.setAdapter(savedMoviesAdapter);
 
     }
 
 
     public void getWatchedMoviesFromDatabase() {
 
-
         movies = AppDatabase.getInstance(getContext()).movieDao().getAllMovies();
         for (Movie movie : movies) {
             if (movie.isWatched()) {
                 watchedMovies.add(movie);
+                savedMoviesAdapter.setMovies(watchedMovies);
+                savedMoviesAdapter.notifyDataSetChanged();
                 Log.d(TAG, movie.getTitle());
             }
         }
     }
 
 
+    public void removeWatched(Movie movie) {
+        watchedMovies.remove(movie);
+        savedMoviesAdapter.setMovies(watchedMovies);
+        savedMoviesAdapter.notifyDataSetChanged();
+        if (movie.isFavourite()) {
+            movie.setWatched(false);
+            Log.d(TAG,"Set watched movie on false" + movie.getTitle());
+
+        }
+        if (!movie.isFavourite())
+        {
+            AppDatabase.getInstance(getContext()).movieDao().deleteThisMovie(movie);
+            Log.d(TAG,"Movie deleted from watched room" + movie.getTitle());
+        }
+    }
 }

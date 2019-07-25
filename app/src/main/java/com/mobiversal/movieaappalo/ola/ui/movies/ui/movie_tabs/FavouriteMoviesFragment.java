@@ -38,7 +38,7 @@ public class FavouriteMoviesFragment extends Fragment {
     List<Movie> movies;
     TabMoviesAdapter savedMoviesAdapter;
     List<Movie> favMovies;
-    Button remove;
+
 
 
 
@@ -76,7 +76,7 @@ public class FavouriteMoviesFragment extends Fragment {
         llm.setOrientation(RecyclerView.VERTICAL);
 
         rvFavouriteMovies.setLayoutManager(llm);
-        savedMoviesAdapter = new TabMoviesAdapter(new ArrayList<>(), true, new RemoveItemListener() {
+        savedMoviesAdapter = new TabMoviesAdapter(new ArrayList<>(),  new RemoveItemListener() {
             @Override
             public void removeItem(Movie item) {
                 removeFavourite(item);
@@ -105,6 +105,17 @@ public class FavouriteMoviesFragment extends Fragment {
         favMovies.remove(movie);
         savedMoviesAdapter.setMovies(favMovies);
         savedMoviesAdapter.notifyDataSetChanged();
+        movie.setFavourite(false);
+        if (movie.isWatched()) {
+            movie.setFavourite(false);
+            Log.d(TAG,"Set fav movie on false" + movie.getTitle());
+        }
+        if (!movie.isWatched())
+        {
+            AppDatabase.getInstance(getContext()).movieDao().deleteThisMovie(movie);
+            Log.d(TAG,"Movie deleted from fav room" + movie.getTitle());
+        }
+
     }
 
 

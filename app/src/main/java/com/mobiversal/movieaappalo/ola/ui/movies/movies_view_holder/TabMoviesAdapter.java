@@ -36,13 +36,12 @@ public class TabMoviesAdapter extends RecyclerView.Adapter<TabMoviesAdapter.Save
 
     private RemoveItemListener removeItemListener;
 
-    private boolean adapterFavourite;
 
-    public TabMoviesAdapter(List<Movie> movies, boolean adapterFavourite, RemoveItemListener removeItemListener) {
+    public TabMoviesAdapter(List<Movie> movies, RemoveItemListener removeItemListener) {
 
         this.movies = movies;
         this.removeItemListener = removeItemListener;
-        this.adapterFavourite=adapterFavourite;
+
     }
 
     public List<Movie> getMovies() {
@@ -102,24 +101,6 @@ public class TabMoviesAdapter extends RecyclerView.Adapter<TabMoviesAdapter.Save
             remove.setOnClickListener(view -> {
 
                 removeItemListener.removeItem(movie);
-
-//                    if (movie.isFavourite() && adapterFavourite){
-//                        movie.setFavourite(false);
-//                        Log.d("Favourite","Removed from favourites" + movie.getTitle());
-//                    }
-//                     if (movie.isWatched() && !adapterFavourite) {
-//                        movie.setWatched(false);
-//                        Log.d("Watched","Removed from watched" + movie.getTitle());
-//                    }
-//                     if (!movie.isWatched() &&  !movie.isFavourite()) {
-//                        AppDatabase.getInstance(context).movieDao().deleteThisMovie(movie);
-//                        Log.d("Saved Movie ","Removed from both" + movie.getTitle());
-//
-//                    }
-//
-//                     AppDatabase.getInstance(context).movieDao().updateMovies(movie);
-//                     //notifyDataSetChanged();
-
 
             });
         }
